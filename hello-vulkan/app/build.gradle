@@ -26,7 +26,7 @@ android {
             glslcArgs.addAll(['-c'])
         }
         applicationId 'com.android.hellovk'
-        minSdk 30
+        minSdk 24
         targetSdk 33
         externalNativeBuild {
             cmake {

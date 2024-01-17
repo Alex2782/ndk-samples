@@ -128,7 +128,11 @@ Renderer::Renderer() : mNumInstances(0), mLastFrameNs(0) {
 
 Renderer::~Renderer() {}
 
+//ALEX
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 void Renderer::resize(int w, int h) {
+	ALOGV("Renderer::resize w: %d, h: %d \n", w, h);
+
   auto offsets = mapOffsetBuf();
   calcSceneParams(w, h, offsets);
   unmapOffsetBuf();
@@ -141,8 +145,10 @@ void Renderer::resize(int w, int h) {
 
   mLastFrameNs = 0;
 
-  glViewport(0, 0, w, h);
+	ALOGV("glViewport w: %d, h: %d \n", w, h);
+	glViewport(0, 0, w, h);
 }
+//------------------------------------------------------------
 
 void Renderer::calcSceneParams(unsigned int w, unsigned int h, float* offsets) {
   // number of cells along the larger screen dimension
@@ -178,6 +184,9 @@ void Renderer::calcSceneParams(unsigned int w, unsigned int h, float* offsets) {
   }
 
   mNumInstances = ncells[0] * ncells[1];
+  //ALEX max 3
+  mNumInstances = 3;
+
   mScale[major] = 0.5f * CELL_SIZE * scene2clip[0];
   mScale[minor] = 0.5f * CELL_SIZE * scene2clip[1];
 }
